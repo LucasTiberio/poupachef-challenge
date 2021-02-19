@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@poupachef/*": ["src/*"],
+      "@poupachef/components/*": ["src/components/*"]
+    }
+  }
+}
