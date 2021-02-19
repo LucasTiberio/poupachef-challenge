@@ -1,13 +1,38 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+
+import { getCurrentTheme } from './store/ducks/theme';
+import GlobalStyle from './theme/global';
 
 import Routing from './routing';
 
-function App() {
+import { ThemeI } from './theme/types';
+import LightTheme from './theme/themes/light';
+import DarkTheme from './theme/themes/dark';
+
+const App = ():JSX.Element => {
+
+  const currentTheme = useSelector(getCurrentTheme);
+
+  const providedTheme: ThemeI = useMemo(() => {
+    switch (currentTheme) {
+      case 'LIGHT':
+        return LightTheme;
+
+      case 'DARK':
+        return DarkTheme;
+    }
+  }, [currentTheme]);
+
   return (
     <div className="App">
-      <Suspense fallback={<h1>loading</h1>}>
-        <Routing />
-      </Suspense>
+      <ThemeProvider theme={providedTheme}>
+        <GlobalStyle />
+        <Suspense fallback={<h1>loading</h1>}>
+          <Routing />
+        </Suspense>
+      </ThemeProvider>
     </div>
   );
 }
