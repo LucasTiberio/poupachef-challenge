@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@poupachef/*": ["src/*"],
+      "@poupachef/api": ["src/api.ts"],
       "@poupachef/components/*": ["src/components/*"]
     }
   }
