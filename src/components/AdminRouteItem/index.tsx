@@ -4,7 +4,9 @@ import { Location } from 'history';
 
 import { isAuthenticated } from '@poupachef/helpers/authentication';
 
+import { Box } from 'rebass';
 import { RouteAndRedirect } from '../../routing/types';
+import Header from '../Header';
 
 interface Props extends RouteAndRedirect {
   location?: Location | undefined;
@@ -15,14 +17,19 @@ const AdminRoute = ({ component: Component, location, ...props }: Props): JSX.El
 
   if (authenticated) {
     return (
-      <Route
-        {...props}
-        render={(renderProps: any): JSX.Element | null => {
-          if (Component) return <Component {...props} {...renderProps} />;
+      <>
+        <Header />
+        <Box p="2rem">
+          <Route
+            {...props}
+            render={(renderProps: any): JSX.Element | null => {
+              if (Component) return <Component {...props} {...renderProps} />;
 
-          return null;
-        }}
-      />
+              return null;
+            }}
+          />
+        </Box>
+      </>
     );
   }
 

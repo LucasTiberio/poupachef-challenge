@@ -42,4 +42,7 @@ export default createGlobalStyle`
   .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-outlined {
     color: ${({ theme }): string => theme.fontColor} !important;
   }
+  .MuiButton-label {
+    color: ${({ theme }): string => theme.mainColor} !important;
+  }
 `;

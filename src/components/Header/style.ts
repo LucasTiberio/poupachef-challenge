@@ -23,4 +23,8 @@ export const LogoImage = styled.img`
   height: 40px;
 
   margin-left: 12px;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;

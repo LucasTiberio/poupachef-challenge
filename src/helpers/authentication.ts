@@ -7,6 +7,10 @@ export const isAuthenticated = (): boolean => {
   const hasAuthenticationHash = !!cookie.get(HASH_COOKIE);
   return hasAuthenticationHash;
 };
+export const getTokenAuthentication = (): string => {
+  const authenticationHash = cookie.get(HASH_COOKIE) || '';
+  return authenticationHash;
+};
 
 export const setAuthentication = (jwt: string) => {
   cookie.set(HASH_COOKIE, jwt, {
