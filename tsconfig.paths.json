@@ -3,8 +3,11 @@
     "baseUrl": ".",
     "paths": {
       "@poupachef/*": ["src/*"],
-      "@poupachef/api": ["src/api.ts"],
-      "@poupachef/components/*": ["src/components/*"]
+      "@poupachef/helpers": ["src/helpers/*"],
+      "@poupachef/ui/*": ["src/ui/*"],
+      "@poupachef/ducks/*": ["src/store/ducks/*"],
+      "@poupachef/components/*": ["src/components/*"],
+      "@poupachef/api": ["src/api.ts"]
     }
   }
 }
