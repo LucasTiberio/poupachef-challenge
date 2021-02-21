@@ -20,6 +20,11 @@ export const Container = styled.div`
 
     tbody {
       tr {
+        td {
+          &:last-child {
+            cursor: pointer;
+          }
+        }
         &:hover {
           td {
             background: ${({ theme }): string => theme.mainColor};

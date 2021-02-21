@@ -48,12 +48,12 @@ const defaultTextCss = css`
   transition: all 0.1s linear;
 `;
 
-export const LightText = styled.p`
+export const LightText = styled.div`
   ${defaultTextCss};
   left: calc(100% - 12px - 28px);
 `;
 
-export const DarkText = styled.p`
+export const DarkText = styled.div`
   ${defaultTextCss};
   left: 12px;
 `;

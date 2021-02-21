@@ -12,6 +12,8 @@ import { ThemeI } from './theme/types';
 import LightTheme from './theme/themes/light';
 import DarkTheme from './theme/themes/dark';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 const App = (): JSX.Element => {
   const currentTheme = useSelector(getCurrentTheme);
 
@@ -33,7 +35,7 @@ const App = (): JSX.Element => {
       <ThemeProvider theme={providedTheme}>
         <GlobalStyle />
         <ToastContainer />
-        <Suspense fallback={<h1>loading</h1>}>
+        <Suspense fallback={<></>}>
           <Routing />
         </Suspense>
       </ThemeProvider>
