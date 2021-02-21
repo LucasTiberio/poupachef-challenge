@@ -21,7 +21,9 @@ const Modal = ({ children, title, open, closeModal }: Props): JSX.Element => {
       <FloatingModal onClick={handleClickOutModal} className="parent-modal-div">
         <WhiteBox>
           <Flex alignItems="center" justifyContent="space-between" pb="32px">
-            <Text fontSize="20px">{title}</Text>
+            <Text as="span" fontSize="20px">
+              {title}
+            </Text>
             <Close onClick={closeModal} style={{ cursor: 'pointer' }} />
           </Flex>
           {children}

@@ -38,6 +38,9 @@ export default createGlobalStyle`
   input {
     color: ${({ theme }): string => theme.fontColor} !important; 
   }
+  svg {
+    fill: ${({ theme }): string => theme.fontColor} !important; 
+  }
   fieldset {
     border-color: ${({ theme }): string => theme.fontColor} !important;
   }

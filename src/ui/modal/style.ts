@@ -16,7 +16,7 @@ export const FloatingModal = styled.div`
 `;
 
 export const WhiteBox = styled.div`
-  background: white;
+  background: ${({ theme }): string => theme.bodyBackground};
 
   width: 80%;
   padding: 20px;
