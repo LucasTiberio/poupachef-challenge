@@ -18,8 +18,7 @@ interface SwitcherBallI {
 export const SwitcherBall = styled.div<SwitcherBallI>`
   position: absolute;
 
-  left: ${({ active }): string => (active ? 'auto' : '3px')};
-  right: ${({ active }): string => (active ? '3px' : 'auto')};
+  left: ${({ active }): string => (active ? 'calc(100% - 3px - 28px)' : '3px')};
 
   top: 50%;
   transform: translateY(-50%);
