@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { toast } from 'react-toastify';
 
 import api from '@poupachef/api';
 import Modal from '@poupachef/ui/modal';
 import { getTokenAuthentication } from '@poupachef/helpers/authentication';
 import { SUPPLIER_LISTING_PATH } from '@poupachef/routing/routes/logged';
 
+import { Flex, Text } from 'rebass';
+import { Button } from '@material-ui/core';
 import { Container, DoubleInformationBox } from './style';
 import InformationBox from './components/InformationBox';
 import ModalEditInformation from './components/ModalEditInformation';
@@ -68,9 +72,7 @@ const SupplierDetails = (): JSX.Element => {
 
   useEffect(() => {
     api
-      .get(`/suppliers/${supplierId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .get(`/suppliers/${supplierId}`)
       .then(({ data }) => {
         delete data.createdAt;
         delete data.updatedAt;
@@ -90,8 +92,38 @@ const SupplierDetails = (): JSX.Element => {
     setModalOpen(false);
   };
 
+  const handleBackToSupplierList = (): void => history.push(SUPPLIER_LISTING_PATH);
+
+  const handleDeleteSupplier = () => {
+    api
+      .delete(`/suppliers/${supplier.publicId}`)
+      .then(() => {
+        toast.success('Fornecedor deletado com sucesso!');
+        handleBackToSupplierList();
+      })
+      .catch(({ response }) => toast.error(response.data.error_description));
+  };
+
   return (
     <>
+      <Flex alignItems="center" justifyContent="space-between" pb="32px">
+        <Flex alignItems="center" justifyContent="space-between" onClick={handleBackToSupplierList}>
+          <ArrowBackIosIcon style={{ cursor: 'pointer' }} />
+          <Text as="span" fontSize="22px" sx={{ cursor: 'pointer' }}>
+            Voltar
+          </Text>
+        </Flex>
+
+        <Button
+          type="submit"
+          variant="contained"
+          color="secondary"
+          size="large"
+          onClick={handleDeleteSupplier}
+        >
+          DELETAR
+        </Button>
+      </Flex>
       <Modal title="Editar informações" open={modalOpen} closeModal={handleCloseModal}>
         <ModalEditInformation
           supplier={supplier}

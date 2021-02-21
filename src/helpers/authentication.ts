@@ -8,14 +8,17 @@ export const isAuthenticated = (): boolean => {
   return hasAuthenticationHash;
 };
 export const getTokenAuthentication = (): string => {
-  const authenticationHash = cookie.get(HASH_COOKIE) || '';
-  return authenticationHash;
+  const storageAuthenticationHash = localStorage.getItem(HASH_COOKIE);
+  const cookieAuthenticationHash = cookie.get(HASH_COOKIE);
+  return storageAuthenticationHash || cookieAuthenticationHash || '';
 };
 
-export const setAuthentication = (jwt: string) => {
+export const setAuthentication = (jwt: string): void => {
   cookie.set(HASH_COOKIE, jwt, {
     expires: HASH_COOKIE_DAYS_LENGHT,
   });
+
+  localStorage.setItem(HASH_COOKIE, jwt);
 
   // For production => Add domain and security cookie fields (as like domain, secure, etc...)
 };

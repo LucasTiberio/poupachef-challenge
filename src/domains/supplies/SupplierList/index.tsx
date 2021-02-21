@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Create } from '@material-ui/icons';
 
 import api from '@poupachef/api';
 
-import { getTokenAuthentication } from '@poupachef/helpers/authentication';
 import { SUPPLIER_LISTING_PATH } from '@poupachef/routing/routes/logged';
 import { Container } from './style';
 
@@ -18,18 +17,24 @@ interface SupplieListItemI {
 
 const SupplierList = (): JSX.Element => {
   const history = useHistory();
+  const location = useLocation();
+
+  const { jwt }: any = location.state || '';
+
   const [supplierList, setSupplierList] = useState<SupplieListItemI[]>([]);
 
-  const token = getTokenAuthentication();
-
   useEffect(() => {
-    api
-      .get('/suppliers', {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then(({ data }) => {
-        setSupplierList(data);
-      });
+    const initialHeader = jwt
+      ? {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      : {};
+
+    api.get('/suppliers', initialHeader).then(({ data }) => {
+      setSupplierList(data);
+    });
   }, []);
 
   const handleGoToDetails = (supplierId: string): void =>

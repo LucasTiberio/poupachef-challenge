@@ -42,7 +42,9 @@ const Login = (): JSX.Element => {
       )
       .then(({ data }) => {
         setAuthentication(data.access_token);
-        history.push(SUPPLIER_LISTING_PATH);
+        history.push(SUPPLIER_LISTING_PATH, {
+          jwt: data.access_token,
+        });
       })
       .catch(
         ({ response }): React.ReactText => {
