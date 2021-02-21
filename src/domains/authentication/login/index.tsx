@@ -3,6 +3,8 @@ import { Button, TextField } from '@material-ui/core';
 import { Text } from 'rebass';
 import { useFormik } from 'formik';
 import { useHistory } from 'react-router-dom';
+import queryString from 'querystring';
+import { toast } from 'react-toastify';
 
 import Spacer from '@poupachef/ui/spacer';
 import { setAuthentication } from '@poupachef/helpers/authentication';
@@ -22,18 +24,15 @@ const Login = (): JSX.Element => {
   const handleGetToken = (values: ValuesI) => {
     const { username, password } = values;
 
-    setAuthentication('123456');
-    history.push(SUPPLIER_LISTING_PATH);
-
     api
       .post(
         '/oauth/token',
-        {
+        queryString.stringify({
           grant_type: 'password',
           scope: 'web',
           username,
           password,
-        },
+        }),
         {
           auth: {
             username: 'poupachef-test',
@@ -42,9 +41,17 @@ const Login = (): JSX.Element => {
         },
       )
       .then(({ data }) => {
-        console.log(data);
+        setAuthentication(data.access_token);
+        history.push(SUPPLIER_LISTING_PATH);
       })
-      .catch(error => console.log(error));
+      .catch(
+        ({ response }): React.ReactText => {
+          if (response.data.error_description === 'Bad credentials')
+            return toast.error('Combinação de usuário e senha inválidos.');
+
+          return toast.error(response.data.error_description);
+        },
+      );
   };
 
   const initialValues: ValuesI = {
