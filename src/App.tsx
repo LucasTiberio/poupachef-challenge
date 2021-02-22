@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import GlobalStyle from './theme/global';
 import { ThemeI } from './theme/types';
 
-import getThemeObject from './helpers/getThemeObject';
+import getThemeObject from './support/helpers/getThemeObject';
 import SuspenseComponent from './components/Suspense';
 import Routing from './routing';
 

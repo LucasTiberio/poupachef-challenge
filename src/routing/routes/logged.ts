@@ -3,10 +3,10 @@ import { lazy } from 'react';
 import { RouteAndRedirect } from '../../routing/types';
 
 export const SUPPLIER_LISTING_PATH = '/suppliers';
-const SUPPLIER_LISTING_COMPONENT = lazy(() => import('../../domains/supplies/SupplierList'));
+const SUPPLIER_LISTING_COMPONENT = lazy(() => import('@poupachef/io/supplies/SupplierList'));
 
 export const SUPPLIER_UNIQUE_PATH = '/suppliers/:supplierPublicId';
-const SUPPLIER_UNIQUE_COMPONENT = lazy(() => import('../../domains/supplies/SupplierDetails'));
+const SUPPLIER_UNIQUE_COMPONENT = lazy(() => import('@poupachef/io/supplies/SupplierDetails'));
 
 const routes: RouteAndRedirect[] = [
   {

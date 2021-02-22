@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { isAuthenticated, getTokenAuthentication } from '@poupachef/helpers/authentication';
+import { isAuthenticated, getTokenAuthentication } from '@poupachef/support/helpers/authentication';
 
 const api = () => {
   const getBearerToken = () => {

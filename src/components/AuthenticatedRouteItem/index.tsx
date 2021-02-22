@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { Location } from 'history';
 
-import { isAuthenticated } from '@poupachef/helpers/authentication';
+import { isAuthenticated } from '@poupachef/support/helpers/authentication';
 
 import { Box } from 'rebass';
 import { RouteAndRedirect } from '../../routing/types';

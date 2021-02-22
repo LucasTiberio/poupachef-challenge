@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 
 import api from '@poupachef/api';
-import { getTokenAuthentication } from '@poupachef/helpers/authentication';
+import { getTokenAuthentication } from '@poupachef/support/helpers/authentication';
 import { Box } from 'rebass';
 
 interface Props {

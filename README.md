@@ -10,6 +10,20 @@ To stylize the components, I chose to use styled-components, to keep the code cl
 For architecture, I decided to choose DDD, thus having the possibility to model the most important / central classes of the project, in a way that reduces the complexity and maintenance of these.
 Lighthouse feedback is in the file: localhost_2021-02-22_14-16-53.report.html.
 
+# Architecture folders definition
+
+- src
+  - /assets (Save custom images/css/scss/js files)
+  - /components (Global components that should be used in all project)
+  - /contex (ContextAPI setup)
+  - /domains (Central domains of the project and its subdomains)
+    - /components (Custom components that should be used only in this domain)
+  - /io (Input <-> Output. Intermediary between routes and domains, unique contact that client-view will have with the domains)
+  - /routing (Main react-router-dom setup and its routes)
+  - /support (Helpers, envs, commons, custom hooks, etc)
+  - /theme (Everything about theme, as like Global style, and themes style (light, dark))
+  - /ui (Custom design system with components)
+
 ## .env
 
 REACT_APP_BASIC_AUTH_PASSWORD=dd3ed90e-667f-4248-a671-9266261dba5b

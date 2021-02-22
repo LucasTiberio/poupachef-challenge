@@ -7,11 +7,11 @@ import queryString from 'querystring';
 import { toast } from 'react-toastify';
 
 import Spacer from '@poupachef/ui/spacer';
-import { setAuthentication } from '@poupachef/helpers/authentication';
+import { setAuthentication } from '@poupachef/support/helpers/authentication';
 import { SUPPLIER_LISTING_PATH } from '@poupachef/routing/routes/logged';
 import api from '@poupachef/api';
 
-import { BASIC_AUTH_PASSWORD } from '@poupachef/commons/envs';
+import { BASIC_AUTH_PASSWORD } from '@poupachef/support/commons/envs';
 import { Container } from './style';
 
 interface ValuesI {
