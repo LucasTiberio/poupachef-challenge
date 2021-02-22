@@ -5,11 +5,11 @@ import { toast } from 'react-toastify';
 
 import api from '@poupachef/api';
 import Modal from '@poupachef/ui/modal';
-import { getTokenAuthentication } from '@poupachef/helpers/authentication';
 import { SUPPLIER_LISTING_PATH } from '@poupachef/routing/routes/logged';
 
 import { Flex, Text } from 'rebass';
 import { Button } from '@material-ui/core';
+import SpinnerComponent from '@poupachef/components/Spinner';
 import { Container, DoubleInformationBox } from './style';
 import InformationBox from './components/InformationBox';
 import ModalEditInformation from './components/ModalEditInformation';
@@ -68,7 +68,6 @@ const SupplierDetails = (): JSX.Element => {
   } = useParams();
 
   const supplierId = params.supplierPublicId;
-  const token = getTokenAuthentication();
 
   useEffect(() => {
     api
@@ -81,7 +80,8 @@ const SupplierDetails = (): JSX.Element => {
       .catch(() => history.push(SUPPLIER_LISTING_PATH));
   }, []);
 
-  if (Object.values(supplier).some(informations => informations === '')) return <h1>loading</h1>;
+  if (Object.values(supplier).some(informations => informations === ''))
+    return <SpinnerComponent />;
 
   const handleOpen = (informationKey: string) => {
     setModalOpen(true);

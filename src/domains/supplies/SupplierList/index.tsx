@@ -5,6 +5,7 @@ import { Create } from '@material-ui/icons';
 import api from '@poupachef/api';
 
 import { SUPPLIER_LISTING_PATH } from '@poupachef/routing/routes/logged';
+import SpinnerComponent from '@poupachef/components/Spinner';
 import { Container } from './style';
 
 interface SupplieListItemI {
@@ -39,6 +40,8 @@ const SupplierList = (): JSX.Element => {
 
   const handleGoToDetails = (supplierId: string): void =>
     history.push(`${SUPPLIER_LISTING_PATH}/${supplierId}`);
+
+  if (supplierList.length) return <SpinnerComponent />;
 
   return (
     <Container>
