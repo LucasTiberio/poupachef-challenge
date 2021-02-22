@@ -1,6 +1,5 @@
 import React from 'react';
-import { createBrowserHistory } from 'history';
-import { Router, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 
 import AuthenticatedRouteItem from '../components/AuthenticatedRouteItem';
 import PublicRouteItem from '../components/PublicRouteItem';
@@ -8,10 +7,8 @@ import PublicRouteItem from '../components/PublicRouteItem';
 import routes from './routes';
 
 const Routing = (): JSX.Element => {
-  const history = createBrowserHistory();
-
   return (
-    <Router history={history}>
+    <Router>
       <Switch>
         {routes.map(
           (route, index): JSX.Element => {
