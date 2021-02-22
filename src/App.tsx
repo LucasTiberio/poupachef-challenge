@@ -6,7 +6,7 @@ import GlobalStyle from './theme/global';
 import { ThemeI } from './theme/types';
 
 import getThemeObject from './helpers/getThemeObject';
-import SpinnerComponent from './components/Spinner';
+import SuspenseComponent from './components/Suspense';
 import Routing from './routing';
 
 import { withContext, AppContextProvider } from './context';
@@ -28,7 +28,7 @@ const App = (): JSX.Element => {
     <div className="App">
       <AppContextProvider value={initialContextValues}>
         <ThemeProvider theme={providedTheme}>
-          <Suspense fallback={<SpinnerComponent />}>
+          <Suspense fallback={<SuspenseComponent />}>
             <GlobalStyle />
             <ToastContainer />
             <Routing />
