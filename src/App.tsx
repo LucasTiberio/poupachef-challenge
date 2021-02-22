@@ -1,46 +1,42 @@
-import React, { Suspense, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import React, { Suspense, useMemo, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 
-import { getCurrentTheme } from './store/ducks/theme';
 import GlobalStyle from './theme/global';
 
 import Routing from './routing';
 
 import { ThemeI } from './theme/types';
-import LightTheme from './theme/themes/light';
-import DarkTheme from './theme/themes/dark';
+
+import { withContext, AppContextProvider } from './context';
 
 import 'react-toastify/dist/ReactToastify.css';
+import getThemeObject from './helpers/getThemeObject';
 
 const App = (): JSX.Element => {
-  const currentTheme = useSelector(getCurrentTheme);
+  // ContextAPI Values
+  const [theme, setTheme] = useState<'LIGHT' | 'DARK'>('DARK');
 
-  const providedTheme: ThemeI = useMemo(() => {
-    switch (currentTheme) {
-      case 'LIGHT':
-        return LightTheme;
+  const providedTheme: ThemeI = useMemo(() => getThemeObject(theme), [theme]);
 
-      case 'DARK':
-        return DarkTheme;
-
-      default:
-        return LightTheme;
-    }
-  }, [currentTheme]);
+  const initialContextValues = {
+    theme,
+    setTheme,
+  };
 
   return (
     <div className="App">
-      <ThemeProvider theme={providedTheme}>
-        <GlobalStyle />
-        <ToastContainer />
-        <Suspense fallback={<></>}>
-          <Routing />
-        </Suspense>
-      </ThemeProvider>
+      <AppContextProvider value={initialContextValues}>
+        <ThemeProvider theme={providedTheme}>
+          <GlobalStyle />
+          <ToastContainer />
+          <Suspense fallback={<></>}>
+            <Routing />
+          </Suspense>
+        </ThemeProvider>
+      </AppContextProvider>
     </div>
   );
 };
 
-export default App;
+export default withContext(App);

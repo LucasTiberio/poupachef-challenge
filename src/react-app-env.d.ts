@@ -18,3 +18,8 @@ declare interface SupplierI {
   createdAt: string;
   updatedAt: string;
 }
+
+declare interface AppContextInterface {
+  theme: 'LIGHT' | 'DARK';
+  setTheme(theme: 'LIGHT' | 'DARK'): void;
+}

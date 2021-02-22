@@ -1,31 +1,31 @@
+import { withContext } from '@poupachef/context';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { getCurrentTheme, updateTheme } from '../../store/ducks/theme';
 
 import { Container, SwitcherBall, LightText, DarkText } from './style';
 
-const ThemeSwitcher = (): JSX.Element => {
-  const dispatch = useDispatch();
-  const currentTheme = useSelector(getCurrentTheme);
+interface Props {
+  context: AppContextInterface;
+}
+const ThemeSwitcher = ({ context }: Props): JSX.Element => {
+  const { theme } = context;
 
   const handleUpdateTheme = () => {
-    const newTheme = currentTheme === 'LIGHT' ? 'DARK' : 'LIGHT';
+    const newTheme = theme === 'LIGHT' ? 'DARK' : 'LIGHT';
 
-    dispatch(updateTheme(newTheme));
+    context.setTheme(newTheme);
   };
 
   return (
     <Container onClick={handleUpdateTheme}>
-      <SwitcherBall active={currentTheme !== 'LIGHT'} />
-      {currentTheme === 'LIGHT' && (
+      <SwitcherBall active={theme !== 'LIGHT'} />
+      {theme === 'LIGHT' && (
         <LightText>
           DAY
           <br />
           MODE
         </LightText>
       )}
-      {currentTheme === 'DARK' && (
+      {theme === 'DARK' && (
         <DarkText>
           NIGHT
           <br />
@@ -36,4 +36,4 @@ const ThemeSwitcher = (): JSX.Element => {
   );
 };
 
-export default ThemeSwitcher;
+export default withContext(ThemeSwitcher);

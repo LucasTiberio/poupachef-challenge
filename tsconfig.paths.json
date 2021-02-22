@@ -5,7 +5,6 @@
       "@poupachef/*": ["src/*"],
       "@poupachef/helpers": ["src/helpers/*"],
       "@poupachef/ui/*": ["src/ui/*"],
-      "@poupachef/ducks/*": ["src/store/ducks/*"],
       "@poupachef/components/*": ["src/components/*"],
       "@poupachef/api": ["src/api.ts"]
     }
