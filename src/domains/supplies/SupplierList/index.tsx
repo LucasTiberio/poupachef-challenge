@@ -41,7 +41,7 @@ const SupplierList = (): JSX.Element => {
   const handleGoToDetails = (supplierId: string): void =>
     history.push(`${SUPPLIER_LISTING_PATH}/${supplierId}`);
 
-  if (supplierList.length) return <SpinnerComponent />;
+  if (!supplierList.length) return <SpinnerComponent />;
 
   return (
     <Container>
