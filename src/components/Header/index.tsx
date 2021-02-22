@@ -10,8 +10,8 @@ const Header = (): JSX.Element => {
   return (
     <Container>
       <div>
-        <IconImage src={CompactLogo} />
-        <LogoImage src={Logo} />
+        <IconImage src={CompactLogo} alt="Compacted logo" loading="lazy" />
+        <LogoImage src={Logo} alt="Full logo" loading="lazy" />
       </div>
       <ThemeSwitcher />
     </Container>

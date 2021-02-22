@@ -1,5 +1,6 @@
 /// <reference types="react-scripts" />
 
+declare module 'react-svg-spinner';
 declare interface SupplierI {
   publicId: string;
   name: string;
