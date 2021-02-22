@@ -11,6 +11,7 @@ import { setAuthentication } from '@poupachef/helpers/authentication';
 import { SUPPLIER_LISTING_PATH } from '@poupachef/routing/routes/logged';
 import api from '@poupachef/api';
 
+import { BASIC_AUTH_PASSWORD } from '@poupachef/commons/envs';
 import { Container } from './style';
 
 interface ValuesI {
@@ -36,7 +37,7 @@ const Login = (): JSX.Element => {
         {
           auth: {
             username: 'poupachef-test',
-            password: 'dd3ed90e-667f-4248-a671-9266261dba5b',
+            password: BASIC_AUTH_PASSWORD,
           },
         },
       )
