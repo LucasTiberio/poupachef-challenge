@@ -4,7 +4,6 @@ import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 
 import api from '@poupachef/api';
-import { getTokenAuthentication } from '@poupachef/support/helpers/authentication';
 import { Box } from 'rebass';
 
 interface Props {
@@ -41,22 +40,12 @@ const ModalEditOpen = ({
 
   if (!informationList) return <></>;
 
-  const token = getTokenAuthentication();
-
   const handleUpdateValues = (values: any): void => {
     api
-      .put(
-        '/suppliers',
-        {
-          ...supplier,
-          ...values,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      )
+      .put('/suppliers', {
+        ...supplier,
+        ...values,
+      })
       .then(({ data }) => {
         toast.success('Dados alterados com sucesso!');
         setSupplier(data);

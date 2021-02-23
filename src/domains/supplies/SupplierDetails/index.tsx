@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { toast } from 'react-toastify';
@@ -17,9 +17,9 @@ import ModalEditInformation from './components/ModalEditInformation';
 const SupplierDetails = (): JSX.Element => {
   const history = useHistory();
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalInformation, setModalInformation] = useState<string>('');
-  const [supplier, setSupplier] = useState<SupplierI>({
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalInformation, setModalInformation] = React.useState<string>('');
+  const [supplier, setSupplier] = React.useState<SupplierI>({
     address: '',
     city: '',
     cnpj: '',
