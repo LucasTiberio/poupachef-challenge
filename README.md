@@ -4,7 +4,7 @@ made with ❤️ by [Lucas](https://www.linkedin.com/in/lucas-tiberio/)
 
 ## Definitions of usage
 
-- Firstly, I used craco for init my project. It allows me to use features like Path Mapping in typescript (ex.: @poupachef/components/* instead ../../../poupachef/components/*).
+- Firstly, I used craco for init my project. It allows me to use features like Path Mapping in typescript (ex.: @poupachef/components/_ instead ../../../poupachef/components/_).
 - I opted for the Context API instead of Redux, to avoid manipulation of great information and logic. Using only to save the state in more nested objects.
 - I used a UX technique called Fast-Feedback, to avoid repeating unnecessary requests or renders. Updating the values directly ​​in the state, right after the request is answer.
 - To stylize the components, I chose to use styled-components, to keep the code cleaner and readable. In addition to the possibility of theme control across the state.
@@ -14,11 +14,14 @@ made with ❤️ by [Lucas](https://www.linkedin.com/in/lucas-tiberio/)
 # Architecture folders definition
 
 - src
+  - /\_\_mocks\_\_ (Mocks to be used in tests)
   - /assets (Save custom images/css/scss/js files)
   - /components (Global components that should be used in all project)
   - /contex (ContextAPI setup)
   - /domains (Central domains of the project and its subdomains)
-    - /components (Custom components that should be used only in this domain)
+    - supplies (example)
+      - /tests (Every test from every component in this domain)
+      - /components (Custom components that should be used only in this domain)
   - /io (Input <-> Output. Intermediary between routes and domains, unique contact that client-view will have with the domains)
   - /routing (Main react-router-dom setup and its routes)
   - /support (Helpers, envs, commons, custom hooks, etc)
